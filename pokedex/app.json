@@ -28,7 +28,7 @@
     },
     "scheme": "pokedex",
     "plugins": [
-      "expo-router"
+      "expo-status-bar"
     ]
   }
 }

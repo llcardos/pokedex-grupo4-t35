@@ -86,7 +86,9 @@ export default function DetailScreen({ route }: Props) {
         <View style={styles.tagContainer}>
           {pokemon.types.map((t, i) => (
             <View key={i} style={styles.tag}>
-              <Text style={styles.tagText}>{t.type.name}</Text>
+              <Text style={styles.tagText}>{t.type.name}
+                
+              </Text>
             </View>
           ))}
         </View>
