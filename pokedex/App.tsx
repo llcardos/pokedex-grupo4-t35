@@ -17,7 +17,7 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ title: 'Pokédex', headerStyle: { backgroundColor: '#3b4cca' }, headerTintColor: '#fff' }}
+          options={{ title: 'PokÃ©dex', headerStyle: { backgroundColor: '#3b4cca' }, headerTintColor: '#fff' }}
         />
         <Stack.Screen
           name="Detail"
