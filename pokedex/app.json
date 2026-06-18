@@ -27,8 +27,6 @@
       "favicon": "./assets/favicon.png"
     },
     "scheme": "pokedex",
-    "plugins": [
-      "expo-router"
-    ]
+    "plugins": []
   }
 }
