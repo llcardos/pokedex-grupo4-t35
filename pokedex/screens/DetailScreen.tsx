@@ -4,6 +4,31 @@ import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../App';
 import { detailStyles as styles } from '../styles/detailStyles';
 
+const typeColors = {
+  normal: '#A8A878',
+  fire: '#F08030',
+  water: '#6890F0',
+  electric: '#F8D030',
+  grass: '#78C850',
+  ice: '#98D8D8',
+  fighting: '#C03028',
+  poison: '#A040A0',
+  ground: '#E0C068',
+  flying: '#A890F0',
+  psychic: '#F85888',
+  bug: '#A8B820',
+  rock: '#B8A038',
+  ghost: '#705898',
+  dragon: '#7038F8',
+  dark: '#6b6b6b',
+  steel: '#B8B8D0',
+  fairy: '#EE99AC'
+};
+
+const getTypeColor = (typeName: string) => {
+  return typeColors[typeName as keyof typeof typeColors] || '#777777'; // Cor padrão se não encontrar
+};
+
 interface PokemonDetail {
   id: number;
   name: string;
@@ -12,6 +37,9 @@ interface PokemonDetail {
   base_experience: number;
   types: { type: { name: string } }[];
   abilities: { ability: { name: string } }[];
+  moves: {
+    move: any; moves: { name: string } 
+}[];
   sprites: { front_default: string };
 }
 
@@ -59,11 +87,22 @@ export default function DetailScreen({ route }: Props) {
     <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Image source={{ uri: pokemon.sprites.front_default }} style={styles.image} />
-        <Text style={styles.id}>#{pokemon.id}</Text>
         <Text style={styles.name}>
-          {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+          #{pokemon.id}. {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+
         </Text>
+
+        <View style={styles.tagContainer}>
+          {pokemon.types.map((t, i) => (
+            <View key={i} style={[ styles.tag, { backgroundColor: getTypeColor(t.type.name) }]}>
+              <Text style={styles.tagText}>{t.type.name}
+              </Text>
+            </View>
+          ))}
+        </View>
       </View>
+
+
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Informações</Text>
@@ -81,18 +120,8 @@ export default function DetailScreen({ route }: Props) {
         </View>
       </View>
 
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Tipos</Text>
-        <View style={styles.tagContainer}>
-          {pokemon.types.map((t, i) => (
-            <View key={i} style={styles.tag}>
-              <Text style={styles.tagText}>{t.type.name}
-                
-              </Text>
-            </View>
-          ))}
-        </View>
-      </View>
+
+
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Habilidades</Text>
@@ -100,6 +129,18 @@ export default function DetailScreen({ route }: Props) {
           {pokemon.abilities.map((a, i) => (
             <View key={i} style={[styles.tag, styles.abilityTag]}>
               <Text style={styles.tagText}>{a.ability.name}</Text>
+            </View>
+          ))}
+        </View>
+      </View>
+
+
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Movimentos</Text>
+        <View style={styles.tagContainer}>
+          {pokemon.moves.map((a, i) => (
+            <View key={i} style={[styles.tag, styles.abilityTag]}>
+              <Text style={styles.tagText}>{a.move.name}</Text>
             </View>
           ))}
         </View>

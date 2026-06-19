@@ -19,8 +19,14 @@ export const detailStyles = StyleSheet.create({
         borderBottomRightRadius: 24,
     },
     image: {
-        width: 120,
-        height: 120,
+        width: 200,
+        height: 200,
+        resizeMode: "stretch",
+        backgroundColor: '#fff',
+        borderRadius: 100, 
+        
+
+
     },
     id: {
         fontSize: 14,
