@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 export const detailStyles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f0f0f0',
+        backgroundColor: 'transparent',
     },
     center: {
         flex: 1,

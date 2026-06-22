@@ -3,6 +3,7 @@ import { View, Text, Image, ScrollView, ActivityIndicator } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../App';
 import { detailStyles as styles } from '../styles/detailStyles';
+import GameBoyScreen from '../components/GameBoyScreen';
 
 interface PokemonDetail {
   id: number;
@@ -56,12 +57,13 @@ export default function DetailScreen({ route }: Props) {
   }
 
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Image source={{ uri: pokemon.sprites.front_default }} style={styles.image} />
-        <Text style={styles.id}>#{pokemon.id}</Text>
-        <Text style={styles.name}>
-          {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+    <GameBoyScreen>
+      <ScrollView style={styles.container}>
+        <View style={styles.header}>
+          <Image source={{ uri: pokemon.sprites.front_default }} style={styles.image} />
+          <Text style={styles.id}>#{pokemon.id}</Text>
+          <Text style={styles.name}>
+            {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
         </Text>
       </View>
 
@@ -103,5 +105,6 @@ export default function DetailScreen({ route }: Props) {
         </View>
       </View>
     </ScrollView>
+    </GameBoyScreen>
   );
 }
