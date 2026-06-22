@@ -4,6 +4,7 @@ import { View, Text, FlatList, TextInput, ActivityIndicator, TouchableOpacity, I
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../App';
 import { homeStyles as styles } from '../styles/homeStyles';
+import GameBoyScreen from '../components/GameBoyScreen';
 
 interface Pokemon {
   name: string;
@@ -24,7 +25,7 @@ export default function HomeScreen({ navigation }: Props) {
   const fetchPokemon = async () => {
     try {
       setLoading(true);
-      const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100');
+      const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
       const data = await res.json();
       setPokemonList(data.results);
       setFilteredList(data.results);
@@ -72,6 +73,8 @@ export default function HomeScreen({ navigation }: Props) {
   }
 
   return (
+    <GameBoyScreen>
+
     <View style={styles.container}>
       <TextInput
         style={styles.input}
@@ -79,7 +82,7 @@ export default function HomeScreen({ navigation }: Props) {
         placeholderTextColor="#999"
         value={searchText}
         onChangeText={handleSearch}
-      />
+        />
       <FlatList
         data={filteredList}
         keyExtractor={(item) => item.name}
@@ -88,13 +91,13 @@ export default function HomeScreen({ navigation }: Props) {
           const pokemonId = getId(item.url);
           return (
             <TouchableOpacity
-              style={styles.card}
-              onPress={() => navigation.navigate('Detail', { id: pokemonId })}
+            style={styles.card}
+            onPress={() => navigation.navigate('Detail', { id: pokemonId })}
             >
               <Image
                 source={{ uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png` }}
                 style={styles.sprite}
-              />
+                />
               <View style={styles.cardInfo}>
                 <Text style={styles.cardId}>#{pokemonId}</Text>
                 <Text style={styles.cardName}>
@@ -108,8 +111,9 @@ export default function HomeScreen({ navigation }: Props) {
         ListEmptyComponent={
           <Text style={styles.empty}>Nenhum Pokémon encontrado.</Text>
         }
-      />
+        />
     </View>
+        </GameBoyScreen>
   );
 }
 
