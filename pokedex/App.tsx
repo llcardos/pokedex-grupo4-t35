@@ -17,12 +17,12 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ title: 'Pokédex', headerStyle: { backgroundColor: '#3b4cca' }, headerTintColor: '#fff' }}
+          options={{ title: 'Pokédex', headerStyle: { backgroundColor: '#af2b2b' }, headerTintColor: '#fff' }}
         />
         <Stack.Screen
           name="Detail"
           component={DetailScreen}
-          options={{ title: 'Detalhes', headerStyle: { backgroundColor: '#3b4cca' }, headerTintColor: '#fff' }}
+          options={{ title: 'Detalhes', headerStyle: { backgroundColor: '#af2b2b' }, headerTintColor: '#fff' }}
         />
       </Stack.Navigator>
     </NavigationContainer>
